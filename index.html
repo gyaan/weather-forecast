@@ -59,7 +59,6 @@
             <p class="lead">Wind:{{weather.details.wind.speed}}miles/hour</p>
             <p> <i>Sun Rise: </i>{{weather.details.sys.sunrise| date:'HH:mm:ss'}}</p>
             <p> <i>Sun Set: </i> {{weather.details.sys.sunset| date:'HH:mm:ss'}}</p>
-            <P> <i>Lat,Long: </i>{{weather.location.coords.latitude}},{{weather.location.coords.longitude}}</P>
         </div>
 
         <div class="row marketing" ng-hide="weather.isLocationAavilable">
