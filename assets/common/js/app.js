@@ -81,12 +81,5 @@
      "cod": 200
      }
      */
-    var dayDetails = {
-
-        "day": "Friday",
-        "time": "10:10",
-        "time_am_pm": "AM"
-    }
-
 })();
 

@@ -50,22 +50,15 @@
 
         <div class="jumbotron" ng-show="weather.isLocationAavilable">
             <h1>{{weather.details.name}} {{weather.details.sys.country}}</h1>
-
-            <p class="lead">{{weather.dayDetails.day}} {{weather.dayDetails.time}} {{weather.dayDetails.time_am_pm}}</p>
-
+            <p class="lead">{{weather.location.timestamp| date:'EEEE hh:mm a'}}</p>
+            <p> Sun Rise:{{weather.details.sys.sunrise| date:'HH:mm:ss'}}</p>
+            <p> Sun Set: {{weather.details.sys.sunset| date:'HH:mm:ss'}}</p>
             <p class="lead">{{weather.details.weather[0].description}}</p>
-
             <p class="lead">{{weather.details.main.temp}}°C</p>
-
             <p class="lead">Humidity:{{weather.details.main.humidity}}%</p>
-
             <p class="lead">Wind:{{weather.details.wind.speed}}miles/hour</p>
-
-            {{weather.location.coords.latitude}}
-            {{weather.location.coords.longitude}}
-
-
-            <!--<p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>-->
+            <P>Lat,Long: {{weather.location.coords.latitude}}
+            {{weather.location.coords.longitude}}</P>
         </div>
 
         <div class="row marketing" ng-hide="weather.isLocationAavilable">
