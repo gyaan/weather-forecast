@@ -46,6 +46,16 @@
             }
         );
 
+        weatherD.getTheWeatherDetails = function(){
+            var postCode = '560008'; //get these values from ng model
+            var countryCode = 'IN';
+            var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + postCode + "," +countryCode+ "&&APPID=1d17b1af6b4ac35d6000daaf9dcbd492&units=metric";
+            $http.get(url).success(function(data) {
+                weatherD.isLocationAavilable = true;
+                weatherD.details = data;
+            });
+        }
+
     }]);
 
     /*var weatherForecastDetails = {
