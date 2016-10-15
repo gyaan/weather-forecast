@@ -12,7 +12,10 @@
     <title>Weather forecast!</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- app css -->
+    <link href="assets/common/css/app.css">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="assets/lib/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -52,7 +55,7 @@
 
             <p class="lead">{{weather.details.weather[0].description}}</p>
 
-            <p class="lead">{{weather.details.main.temp}}</p>
+            <p class="lead">{{weather.details.main.temp}}°C</p>
 
             <p class="lead">Humidity:{{weather.details.main.humidity}}%</p>
 
@@ -61,19 +64,33 @@
             {{weather.location.coords.latitude}}
             {{weather.location.coords.longitude}}
 
+
             <!--<p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>-->
         </div>
 
         <div class="row marketing" ng-hide="weather.isLocationAavilable">
             <div class="col-lg-12">
-                    <form class="form-inline">
+                    <form class="form-inline" name="locationDetails" ng-submit="locationDetails.$valid&&weather.getTheWeatherDetails()" novalidate>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon">Post code:</div>
-                                <input type="text" class="form-control" id="post-code" name="post-code" placeholder="Enter Your city post code">
+                                <input type="text" ng-model="weather.cityDetails.postCode" class="form-control" id="post-code" name="post-code" placeholder="Enter city post code" required>
                             </div>
                         </div>
-                        <input type="button" ng-click = "weather.getTheWeatherDetails()" value="Get Weather Details" class="btn btn-danger"/>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">Country code:</div>
+                                <select class="form-control" name="country-code" id="country-code" ng-model="weather.cityDetails.countryCode">
+                                    <option value="IN">India</option>
+                                    <option value="UK" selected="selected">Uk</option>
+                                    <option value="US">Us</option>
+                                    <option value="AUS">Austrilia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <input type="submit" value="Get Weather Details" class="btn btn-danger"/>
                     </form>
                     <p>&nbsp;</p>
             </div>
@@ -109,6 +126,9 @@
             </div>
         </div>
 
+
+        {{weather.cityDetails.postCode}}
+        {{weather.cityDetails.countryCode}}
         <!--
       {
       "coord": {"lon": 77.6, "lat": 12.98},

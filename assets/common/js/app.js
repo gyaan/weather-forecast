@@ -36,6 +36,7 @@
         weatherD.dayDetails = dayDetails;
         weatherD.isLocationAavilable = false;
         weatherD.location = {};
+        weatherD.cityDetails = {};
         geoLocationService.getCurrentPosition().then(function (position) { //got the position
                 weatherD.isLocationAavilable = true;
                 weatherD.location = position;
@@ -47,8 +48,8 @@
         );
 
         weatherD.getTheWeatherDetails = function(){
-            var postCode = '560008'; //get these values from ng model
-            var countryCode = 'IN';
+            var postCode = weatherD.cityDetails.postCode; //get these values from ng model
+            var countryCode = weatherD.cityDetails.countryCode;
             var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + postCode + "," +countryCode+ "&&APPID=1d17b1af6b4ac35d6000daaf9dcbd492&units=metric";
             $http.get(url).success(function(data) {
                 weatherD.isLocationAavilable = true;
