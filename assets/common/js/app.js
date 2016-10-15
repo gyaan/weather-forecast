@@ -2,4 +2,82 @@
  * Created by gyaneshwar on 12/10/16.
  */
 
-var app = angular.module('weather-forecast',[]);
+(function () {
+    var app = angular.module('weather-forecast', []);
+    app.factory('geoLocationService', ['$q', '$window', function ($q, $window) {
+        'use strict';
+        function getCurrentPosition() {
+            var deferred = $q.defer();
+            if (!$window.navigator.geolocation) {
+                deferred.reject('Geolocation not supported.');
+
+            } else {
+                $window.navigator.geolocation.getCurrentPosition(
+                    function (position) { //user gave the access to location
+                        console.log(position);
+                        deferred.resolve(position);
+                    },
+                    function (err) { //when user deny to give access to location
+                        //alert("gayatri");
+                        console.log(err);
+                        deferred.reject(err);
+                    });
+            }
+            return deferred.promise;
+        }
+
+        return {
+            getCurrentPosition: getCurrentPosition
+        };
+    }]);
+
+    app.controller('WeatherForecastController', ['$http','geoLocationService',function ($http,geoLocationService) {
+        var weatherD = this;
+        weatherD.details = {};
+        this.dayDetails = dayDetails;
+        this.isLocationAavilable = true;
+        this.location = {};
+        geoLocationService.getCurrentPosition().then(function (position) { //
+                //alert("gyani1");
+                console.log(position);
+            }
+        );
+
+        $http.get("http://api.openweathermap.org/data/2.5/weather?lat=12.9729981&lon=77.69198449999999&&APPID=1d17b1af6b4ac35d6000daaf9dcbd492&units=metric").success(function(data){
+            weatherD.details= data;
+        });
+
+
+    }]);
+
+    /*var weatherForecastDetails = {
+        "coord": {"lon": 77.6, "lat": 12.98},
+        "weather": [{"id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03n"}],
+        "base": "stations",
+        "main": {
+            "temp": 25.09,
+            "pressure": 926.52,
+            "humidity": 49,
+            "temp_min": 25.09,
+            "temp_max": 25.09,
+            "sea_level": 1022.66,
+            "grnd_level": 926.52
+        },
+        "wind": {"speed": 3.91, "deg": 34.5016},
+        "clouds": {"all": 44},
+        "dt": 1476461105,
+        "sys": {"message": 0.0068, "country": "IN", "sunrise": 1476405591, "sunset": 1476448244},
+        "id": 1277333,
+        "name": "Bangalore",
+        "cod": 200
+    }
+*/
+    var dayDetails= {
+
+        "day":"Friday",
+        "time": "10:10",
+        "time_am_pm":"AM"
+    }
+
+})();
+

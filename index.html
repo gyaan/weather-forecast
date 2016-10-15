@@ -1,13 +1,150 @@
 <!DOCTYPE html>
-<html ng-app="weather-forecast">
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css">
+<html lang="en" ng-app="weather-forecast">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Narrow Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="assets/lib/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/lib/bootstrap/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="assets/lib/bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="assets/lib/bootstrap/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-   <script type="application/javascript" src="assets/lib/angular/angular.min.js"></script>
-   <script type="application/javascript" src="assets/common/js/app.js"></script>
-   {{"hello " + "world !"}}
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <!--<li role="presentation"><a href="#">About</a></li>-->
+                <!--<li role="presentation"><a href="#">Contact</a></li>-->
+            </ul>
+        </nav>
+        <h3 class="text-muted">Weather Forecast</h3>
+    </div>
+    <div ng-controller="WeatherForecastController as weather">
+
+        <div class="jumbotron" ng-show="weather.isLocationAavilable">
+            <h1>{{weather.details.name}} {{weather.details.sys.country}}</h1>
+
+            <p class="lead">{{weather.dayDetails.day}} {{weather.dayDetails.time}} {{weather.dayDetails.time_am_pm}}</p>
+
+            <p class="lead">{{weather.details.weather[0].description}}</p>
+
+            <p class="lead">{{weather.details.main.temp}}</p>
+
+            <p class="lead">Humidity:{{weather.details.main.humidity}}%</p>
+
+            <p class="lead">Wind:{{weather.details.wind.speed}}miles/hour</p>
+
+            <!--<p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>-->
+        </div>
+
+        <div class="row marketing" ng-hide="weather.isLocationAavilable">
+            <div class="col-lg-12">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">Post code:</div>
+                                <input type="text" class="form-control" id="post-code" name="post-code" placeholder="Enter Your city post code">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-danger">Get Weather Details</button>
+                    </form>
+                    <p>&nbsp;</p>
+            </div>
+
+            <div class="col-lg-6">
+                <h4>Subheading</h4>
+
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+                <h4>Subheading</h4>
+
+                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
+                    fermentum.</p>
+
+                <h4>Subheading</h4>
+
+                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+
+            <div class="col-lg-6">
+                <h4>Subheading</h4>
+
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+                <h4>Subheading</h4>
+
+                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
+                    fermentum.</p>
+
+                <h4>Subheading</h4>
+
+                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+        </div>
+
+        <!--
+      {
+      "coord": {"lon": 77.6, "lat": 12.98},
+      "weather": [{"id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03n"}],
+      "base": "stations",
+      "main": {
+          "temp": 25.09,
+          "pressure": 926.52,
+          "humidity": 49,
+          "temp_min": 25.09,
+          "temp_max": 25.09,
+          "sea_level": 1022.66,
+          "grnd_level": 926.52
+      },
+      "wind": {"speed": 3.91, "deg": 34.5016},
+      "clouds": {"all": 44},
+      "dt": 1476461105,
+      "sys": {"message": 0.0068, "country": "IN", "sunrise": 1476405591, "sunset": 1476448244},
+      "id": 1277333,
+      "name": "Bangalore",
+      "cod": 200
+  }
+      !-->
+    </div>
+
+
+
+    <footer class="footer">
+        <p>&copy; 2016 <a href="https://gyaneshwarpardhi.wordpress.com/">Gyaneshwar</a></p>
+    </footer>
+
+</div>
+<!-- /container -->
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="assets/lib/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+<script type="application/javascript" src="assets/lib/angular/angular.min.js"></script>
+<script type="application/javascript" src="assets/common/js/app.js"></script>
+<script type="application/javascript" src="assets/common/js/geo-location-service.js"></script>
 </body>
 </html>
