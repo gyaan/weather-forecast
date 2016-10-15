@@ -33,7 +33,6 @@
     app.controller('WeatherForecastController', ['$http', 'geoLocationService', function ($http, geoLocationService) {
         var weatherD = this;
         weatherD.details = {};
-        weatherD.dayDetails = dayDetails;
         weatherD.isLocationAavilable = false;
         weatherD.location = {};
         weatherD.cityDetails = {};

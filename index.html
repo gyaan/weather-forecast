@@ -39,30 +39,32 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-                <!--<li role="presentation"><a href="#">About</a></li>-->
-                <!--<li role="presentation"><a href="#">Contact</a></li>-->
+                <li role="presentation" class="active"><a href="/">Home</a></li>
             </ul>
         </nav>
         <h3 class="text-muted">Weather Forecast</h3>
     </div>
     <div ng-controller="WeatherForecastController as weather">
 
-        <div class="jumbotron" ng-show="weather.isLocationAavilable">
+        <div ng-show="weather.isLocationAavilable">
             <h1>{{weather.details.name}} {{weather.details.sys.country}}</h1>
             <p class="lead">{{weather.location.timestamp| date:'EEEE hh:mm a'}}</p>
-            <p> Sun Rise:{{weather.details.sys.sunrise| date:'HH:mm:ss'}}</p>
-            <p> Sun Set: {{weather.details.sys.sunset| date:'HH:mm:ss'}}</p>
-            <p class="lead">{{weather.details.weather[0].description}}</p>
-            <p class="lead">{{weather.details.main.temp}}°C</p>
+            <p class="lead"> Weather Details: {{weather.details.weather[0].main}}, {{weather.details.weather[0].description}}</p>
+            <p class="lead">
+                Temprature: {{weather.details.main.temp}}°C,
+                Min: {{weather.details.main.temp_min}}°C,
+                Max: {{weather.details.main.temp_max}}°C
+            </p>
             <p class="lead">Humidity:{{weather.details.main.humidity}}%</p>
             <p class="lead">Wind:{{weather.details.wind.speed}}miles/hour</p>
-            <P>Lat,Long: {{weather.location.coords.latitude}}
-            {{weather.location.coords.longitude}}</P>
+            <p> <i>Sun Rise: </i>{{weather.details.sys.sunrise| date:'HH:mm:ss'}}</p>
+            <p> <i>Sun Set: </i> {{weather.details.sys.sunset| date:'HH:mm:ss'}}</p>
+            <P> <i>Lat,Long: </i>{{weather.location.coords.latitude}},{{weather.location.coords.longitude}}</P>
         </div>
 
         <div class="row marketing" ng-hide="weather.isLocationAavilable">
             <div class="col-lg-12">
+                    <h3>Get Weather Details:</h3>
                     <form class="form-inline" name="locationDetails" ng-submit="locationDetails.$valid&&weather.getTheWeatherDetails()" novalidate>
                         <div class="form-group">
                             <div class="input-group">
@@ -87,64 +89,8 @@
                     </form>
                     <p>&nbsp;</p>
             </div>
-
-            <div class="col-lg-6">
-                <h4>Subheading</h4>
-
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                <h4>Subheading</h4>
-
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
-                    fermentum.</p>
-
-                <h4>Subheading</h4>
-
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-
-            <div class="col-lg-6">
-                <h4>Subheading</h4>
-
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                <h4>Subheading</h4>
-
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
-                    fermentum.</p>
-
-                <h4>Subheading</h4>
-
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
         </div>
 
-
-        {{weather.cityDetails.postCode}}
-        {{weather.cityDetails.countryCode}}
-        <!--
-      {
-      "coord": {"lon": 77.6, "lat": 12.98},
-      "weather": [{"id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03n"}],
-      "base": "stations",
-      "main": {
-          "temp": 25.09,
-          "pressure": 926.52,
-          "humidity": 49,
-          "temp_min": 25.09,
-          "temp_max": 25.09,
-          "sea_level": 1022.66,
-          "grnd_level": 926.52
-      },
-      "wind": {"speed": 3.91, "deg": 34.5016},
-      "clouds": {"all": 44},
-      "dt": 1476461105,
-      "sys": {"message": 0.0068, "country": "IN", "sunrise": 1476405591, "sunset": 1476448244},
-      "id": 1277333,
-      "name": "Bangalore",
-      "cod": 200
-  }
-      !-->
     </div>
 
 
