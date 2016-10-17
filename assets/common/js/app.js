@@ -14,11 +14,9 @@
             } else {
                 $window.navigator.geolocation.getCurrentPosition(
                     function (position) { //user gave the access to location
-                        console.log(position);
                         deferred.resolve(position);
                     },
                     function (err) { //when user deny to give access to location
-                        console.log(err);
                         deferred.reject(err);
                     });
             }
@@ -35,7 +33,10 @@
         weatherD.details = {};
         weatherD.isLocationAavilable = false;
         weatherD.location = {};
-        weatherD.cityDetails = {};
+        weatherD.cityDetails = {
+            postCode :'',
+            countryCode:'GB'
+        };
         geoLocationService.getCurrentPosition().then(function (position) { //got the position
                 weatherD.isLocationAavilable = true;
                 weatherD.location = position;
@@ -57,28 +58,5 @@
         }
 
     }]);
-
-    /*var weatherForecastDetails = {
-     "coord": {"lon": 77.6, "lat": 12.98},
-     "weather": [{"id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03n"}],
-     "base": "stations",
-     "main": {
-     "temp": 25.09,
-     "pressure": 926.52,
-     "humidity": 49,
-     "temp_min": 25.09,
-     "temp_max": 25.09,
-     "sea_level": 1022.66,
-     "grnd_level": 926.52
-     },
-     "wind": {"speed": 3.91, "deg": 34.5016},
-     "clouds": {"all": 44},
-     "dt": 1476461105,
-     "sys": {"message": 0.0068, "country": "IN", "sunrise": 1476405591, "sunset": 1476448244},
-     "id": 1277333,
-     "name": "Bangalore",
-     "cod": 200
-     }
-     */
 })();
 

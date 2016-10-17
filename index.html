@@ -15,7 +15,7 @@
     <link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- app css -->
-    <link href="assets/common/css/app.css">
+    <link href="assets/common/css/app.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="assets/lib/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -48,60 +48,70 @@
 
         <div ng-show="weather.isLocationAavilable">
             <h1>{{weather.details.name}} {{weather.details.sys.country}}</h1>
+
             <p class="lead">{{weather.location.timestamp| date:'EEEE hh:mm a'}}</p>
-            <p class="lead"> Weather Details: {{weather.details.weather[0].main}}, {{weather.details.weather[0].description}}</p>
+
+            <p class="lead"> Weather Details: {{weather.details.weather[0].main}},
+                {{weather.details.weather[0].description}}</p>
+
             <p class="lead">
                 Temprature: {{weather.details.main.temp}}°C,
                 Min: {{weather.details.main.temp_min}}°C,
                 Max: {{weather.details.main.temp_max}}°C
             </p>
-            <p class="lead">Humidity:{{weather.details.main.humidity}}%</p>
-            <p class="lead">Wind:{{weather.details.wind.speed}}miles/hour</p>
-            <p> <i>Sun Rise: </i>{{weather.details.sys.sunrise| date:'HH:mm:ss'}}</p>
-            <p> <i>Sun Set: </i> {{weather.details.sys.sunset| date:'HH:mm:ss'}}</p>
-        </div>
 
+            <p class="lead">Humidity:{{weather.details.main.humidity}}%</p>
+
+            <p class="lead">Wind:{{weather.details.wind.speed}}miles/hour</p>
+
+            <p><i>Sun Rise: </i>{{weather.details.sys.sunrise| date:'HH:mm:ss'}}</p>
+
+            <p><i>Sun Set: </i> {{weather.details.sys.sunset| date:'HH:mm:ss'}}</p>
+        </div>
+        <h3>Get Weather Details:</h3>
         <div class="row marketing" ng-hide="weather.isLocationAavilable">
             <div class="col-lg-12">
-                    <h3>Get Weather Details:</h3>
-                    <form class="form-inline" name="locationDetails" ng-submit="locationDetails.$valid&&weather.getTheWeatherDetails()" novalidate>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">Post code:</div>
-                                <input type="text" ng-model="weather.cityDetails.postCode" class="form-control" id="post-code" name="post-code" placeholder="Enter city post code" required>
-                            </div>
-                        </div>
+                <form class="form-horizontal" name="locationDetails"
+                      ng-submit="locationDetails.$valid&&weather.getTheWeatherDetails()" novalidate>
+                    <div class="form-group">
+                        <label for="post-code" class="col-sm-2 control-label">Post code:</label>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">Country code:</div>
-                                <select class="form-control" name="country-code" id="country-code" ng-model="weather.cityDetails.countryCode">
-                                    <option value="IN">India</option>
-                                    <option value="UK" selected="selected">Uk</option>
-                                    <option value="US">Us</option>
-                                    <option value="AUS">Austrilia</option>
-                                </select>
-                            </div>
+                        <div class="col-sm-10">
+                            <input type="text" ng-model="weather.cityDetails.postCode" class="form-control"
+                                   id="post-code" name="post-code" placeholder="Enter city post code" required>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="country-code" class="col-sm-2 control-label">Country code:</label>
 
-                        <input type="submit" value="Get Weather Details" class="btn btn-danger"/>
-                    </form>
-                    <p>&nbsp;</p>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="country-code" id="country-code" ng-model="weather.cityDetails.countryCode" required>
+                                <option value="GB">Great Britain</option>
+                                <option value="IND">India</option>
+                                <option value="USA">United States of America</option>
+                                <option value="AUS">Australia</option>
+                                <option value="JPN">Japan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" value="Get Weather Details" class="btn btn-danger"/>
+                        </div>
+                    </div>
+                </form>
+
+
+                <p>&nbsp;</p>
             </div>
         </div>
 
     </div>
-
-
-
     <footer class="footer">
-        <p>&copy; 2016 <a href="https://gyaneshwarpardhi.wordpress.com/">Gyaneshwar!</a></p>
+        <p>&copy; 2016 <a href="https://gyaneshwarpardhi.wordpress.com/" target="_blank">Gyaneshwar!</a></p>
     </footer>
-
 </div>
 <!-- /container -->
-
-
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="assets/lib/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
 <script type="application/javascript" src="assets/lib/angular/angular.min.js"></script>
