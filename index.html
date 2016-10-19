@@ -68,8 +68,8 @@
 
             <p><i>Sun Set: </i> {{weather.details.sys.sunset| date:'HH:mm:ss'}}</p>
         </div>
-        <h3>Get Weather Details:</h3>
         <div class="row marketing" ng-hide="weather.isLocationAavilable">
+            <h3>Get Weather Details:</h3>
             <div class="col-lg-12">
                 <form class="form-horizontal" name="locationDetails"
                       ng-submit="locationDetails.$valid&&weather.getTheWeatherDetails()" novalidate>
