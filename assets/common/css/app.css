@@ -9,3 +9,7 @@
  .has-error{
      border-color: #FA787E;
  }
+
+ .has-success{
+     border-color:#78FA89;
+ }

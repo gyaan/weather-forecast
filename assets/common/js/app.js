@@ -28,7 +28,7 @@
         };
     }]);
 
-    app.controller('WeatherForecastController', ['$http', 'geoLocationService', function ($http, geoLocationService) {
+    app.controller('WeatherForecastController', ['$http','$scope', 'geoLocationService', function ($http, $scope,geoLocationService) {
         var weatherD = this;
         weatherD.details = {};
         weatherD.isLocationAavilable = false;
@@ -37,6 +37,9 @@
             postCode :'',
             countryCode:'GB'
         };
+
+        weatherD.invalidForm = false;
+
         geoLocationService.getCurrentPosition().then(function (position) { //got the position
                 weatherD.isLocationAavilable = true;
                 weatherD.location = position;
@@ -55,6 +58,12 @@
                 weatherD.isLocationAavilable = true;
                 weatherD.details = data;
             });
+        }
+
+        weatherD.validateForm = function(){ //change form input classes if values are empty
+            if(!$scope.locationDetails.$valid){
+                weatherD.invalidForm = true;
+            }
         }
 
     }]);
